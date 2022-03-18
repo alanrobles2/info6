@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Posts;
 
 class PostController extends Controller
 {
@@ -37,6 +38,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        //echo "Post Store";
+        //dd($request);
+
+        $validated = $request->validate([
+            'title'=>'required | min: 5| max:500',
+            'url_clean' => 'required',
+            'content'=> ''
+        ]);
+        //dd($validated);      
+
+        Posts::create($validated);
+        
     }
 
     /**

@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
+
+@include('fragments.validation-errors')
 <form action="{{route('post.store')}}" method="post">
+  @csrf
     <div class="form-group">
       <label for="exampleInputEmail1">Titulo</label>
       <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Enter email">
@@ -16,4 +19,10 @@
       </div>
     <button type="submit" value="Enviar" class="btn btn-primary">Submit</button>
   </form>
+  
+
+
+
+
+
 @endsection
