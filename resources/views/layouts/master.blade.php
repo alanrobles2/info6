@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Info 6</title>
     <link rel="stylesheet" href="{{ asset('css/app.css')}}">
-    <script src="{ asset('js/app.js')}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 </head>
 <body>
     <div class= "container">

@@ -16,7 +16,13 @@ class PostController extends Controller
     public function index()
     {
         //
-        return view('dashboard.posts');
+        $posts = Posts::get();
+        /*$posts es una variable que esta instanciando el modelo Models > Posts.php (atributos y metodos) para que no sea directo Posts::get() y usarla en todas partes*/
+        //dd($posts);
+        return view('dashboard.post.posts', [
+            'posts'=>$posts
+        ]);
+        /*Jala datos de una vista*/
     }
 
     /**
@@ -27,7 +33,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('dashboard.posts');
+        return view('dashboard.post.create');
     }
 
     /**
