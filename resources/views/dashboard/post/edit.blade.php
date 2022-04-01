@@ -5,7 +5,7 @@
 @include('fragments.validation-errors')
 @include('fragments.sesion')
 
-<form method="post" action="{{route("post.store")}}">
+<form method="post" action="{{route("post.update")}}">
     @csrf
     @include('dashboard.post._form')
 
