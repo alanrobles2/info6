@@ -14,7 +14,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 

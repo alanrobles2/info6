@@ -27,7 +27,11 @@
           <a href="{{ route('post.edit', $post->id) }}" class="btn btn-secondary">Edit</a>
         </td>
         <td>
-          <a href="" class="btn btn-danger">Delete</a>
+          <form action="{{ route('post.destroy', $post->id)}}" method="post">
+            @csrf
+            @method("DELETE")
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
         </td>
 
       </tr>  
@@ -37,6 +41,7 @@
   </tbody>
 </table>
 
+<div class="mt-3">{{ $posts->links() }}</div>
 
   
 

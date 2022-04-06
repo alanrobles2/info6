@@ -16,9 +16,11 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Posts::get();
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(2);
         /*$posts es una variable que esta instanciando el modelo Models > Posts.php (atributos y metodos) para que no sea directo Posts::get() y usarla en todas partes*/
+        //-> paginate(x) -> donde x va a ser el numero de elementos por pagina
         //dd($posts);
+
         return view('dashboard.post.posts', [
             'posts'=>$posts
         ]);
@@ -33,7 +35,9 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('dashboard.post.create');
+        return view('dashboard.post.create', [
+            'post' => new Posts()
+        ]);
     }
 
     /**
@@ -80,10 +84,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Posts $post)
     {
         //
-        return "Edit: ".$id;
+        //dd($post);
+        return view('dashboard.post.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -93,9 +100,31 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, Posts $post)
     {
-        //
+        /*De tipo StorePostRequest */
+        //dd($request->all()); + token mas metodo, cuando queremos ver todos los datos, saber que llega o no
+        /*
+        $content = $request->content."info6";
+        $post->update([
+            'title' => $request->title,
+            'url_clean' => $request->url_clean,
+            'content' => $content
+        ]);     
+
+            MANUAL
+
+        */
+
+        //dd($request->validated());
+
+        //Post::find($id)->update($request->validated()); //Este es para buscar primero el ID y luego lo actualiza
+        //PARA EL POST PIDE UN IMPORT 
+        //METODO WHERE PARA id  Post::where('id', $id)->update($request->validated());
+
+        $post->update($request->validated());
+        return back()->with('status', 'Post se ha actualizado correctamente');
+
     }
 
     /**
