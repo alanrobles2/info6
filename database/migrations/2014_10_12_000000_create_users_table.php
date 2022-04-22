@@ -27,6 +27,7 @@ return new class extends Migration
             *  PLANES DE ESTUDIO, CARRERAS -> CATALOGOS 
             *  EJ. MEDICOS, ENFERMEDADES -> CATALOGOS -> LOS IDERS SIRVEN PARA ESO
             */
+            $table->foreignId('role_id')->constrained('roles');
             $table->string('name');
             $table->string('email')->unique(); 
             /* SE COLOCAN LOS CONSTRAINTS*/
