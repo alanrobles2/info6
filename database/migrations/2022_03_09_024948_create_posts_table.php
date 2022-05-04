@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained('categories');
             $table->string('title', 500)->nullable();
             $table->string('url_clean', 500)-> nullable();
             $table->text('content')->nullable();
             $table->enum('posted', ['yes', 'no'])->nullable()->default('no');
-            $table->integer('category_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
