@@ -25,9 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/post', PostController::class);
-
-Route::resource('/category', CategoryController::class);
+Route::middleware(['admin'])->group(function () {
+    Route::resource('/post', PostController::class);
+    Route::resource('/category', CategoryController::class);
+});
 
 Auth::routes();
 
